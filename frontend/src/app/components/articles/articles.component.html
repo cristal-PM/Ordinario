@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col s5">
+            <div class="card">
+                <div class="card-content">
+                    <form #artform="ngForm" (ngSubmit)="addArt(artform)">
+                        <div class="form-group" >
+                          <label>Formulario Articulo</label>
+                          <input type="text" class="form-control" name="iname"  placeholder="Enter name" #name="ngModel"[(ngModel)]="articleService.selectArt.name">
+                          <input type="text" class="form-control" name="idescription"  placeholder="Enter description" #description="ngModel"[(ngModel)]="articleService.selectArt.description">
+                          <input type="text" class="form-control" name="idepartment"  placeholder="Enter department" #department="ngModel"[(ngModel)]="articleService.selectArt.department">
+                          <input type="text" class="form-control" name="istock"  placeholder="Enter stock" #stock="ngModel"[(ngModel)]="articleService.selectArt.stock">
+                          <input type="text" class="form-control" name="iup"  placeholder="Enter up" #pu="ngModel"[(ngModel)]="articleService.selectArt.pu">
+                          <input type="text" class="form-control" name="iimagen"  placeholder="Enter imagen" #imagen="ngModel"[(ngModel)]="articleService.selectArt.imagen">
+                        </div>
+                        <div class="card-action">
+                            <button type="submit" style="margin: 16px" class="btn btn-primary">Save</button>
+   
+                            <button type="submit" (click)="resetForm(artform)" class="btn btn-primary">Clean</button>                     </div>
+                       
+                      </form>
+                </div>
+            </div>
+        </div>
+        <div class="col s7">
+            <table>
+                <thead>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>department</th>
+                    <th>Stock</th>
+                    <th>pu</th>
+                    <th>imagen</th>
+                </thead>
+                <tbody> 
+                    <tr *ngFor='let arti of articleService.articles'>
+                        <td>{{arti.name}}</td>
+                        <td>{{arti.description}</td>
+                        <td>{{arti.department}}</td>
+                        <td>{{arti.stock}</td>
+                        <td>{{arti.pu}}</td>
+                        <td>{{arti.imagen}}</td>
+                        <td>
+                            <a (click)="updateArticle(arti)" class="btn btn-secondary btn-sm">
+                              <i class="material-icons">edit</i>
+                            </a>
+                            <a (click)="deleteEmployee(arti._id, artform)" class="btn btn-danger btn-sm">
+                              <i class="material-icons">delete</i>
+                            </a>
+                          </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
